@@ -1,0 +1,14 @@
+void toBinary(int N)
+{
+    int ans = 0, i = 0, bit;
+    while(N != 0)
+    {
+        bit = N & 1;
+        ans = (bit * pow(10, i)) + ans;
+        N = N>>1;
+        i++;
+    }
+    
+    cout<<ans;
+        
+}
