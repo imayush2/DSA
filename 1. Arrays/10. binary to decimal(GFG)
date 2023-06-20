@@ -1,0 +1,17 @@
+class Solution {
+  public:
+    int binary_to_decimal(string str) {
+        reverse(str.begin(), str.end());
+        int sum=0;
+        int place=0;
+        for(int i=0;i<str.size();i++,place++)
+        {
+            int x=str.at(i)-'0';
+            if(x==1)
+            {
+                sum+=pow(2,place);
+            }
+        }
+        return sum;
+    }
+};
