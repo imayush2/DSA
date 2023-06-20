@@ -1,0 +1,21 @@
+class Solution{   
+public:
+    void segregate0and1(int arr[], int n) {
+       int low =0; 
+       int high = n-1;
+       int i=0;
+       
+       while(low<=high){
+           if(arr[i]==0){
+               swap(arr[low],arr[i]);
+               i++;
+               low++;
+           }
+           else{
+               swap(arr[i],arr[high]);
+               high--;
+           }
+       }
+       
+    }
+};
