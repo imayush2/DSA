@@ -1,0 +1,23 @@
+class Solution {
+  public:
+    int sumOfRowCol(int N, int M, vector<vector<int>> A) {
+        // code here
+        int rowsum=0,colsum=0;
+        for(int i=0;i<min(N,M);i++){
+            rowsum=0;
+            colsum=0;
+            
+            for(int j=0;j<M;j++){
+                rowsum+=A[i][j];
+            }
+            for(int j=0;j<N;j++){
+                colsum+=A[j][i];
+            }
+            
+            if(colsum!=rowsum){
+                return 0;
+            }
+        }
+        return 1;
+    }
+};
