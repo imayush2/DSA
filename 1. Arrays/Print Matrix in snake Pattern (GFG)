@@ -1,0 +1,27 @@
+class Solution
+{   
+    public:
+    //Function to return list of integers visited in snake pattern in matrix.
+    vector<int> snakePattern(vector<vector<int> > arr)
+    {   
+        // code here
+        int n= arr.size();
+        vector<int> vec;
+        
+        for(int i=0; i<n; i++){
+            if(i%2==0){
+            // even rows
+                for(int j=0;j<n; j++){
+                    vec.push_back(arr[i][j]);
+                }
+            }
+            else{
+            //odd rows
+                for(int j=n-1; j>=0; j--){
+                    vec.push_back(arr[i][j]);
+                }
+            }
+        }
+        return vec;
+    }
+};
