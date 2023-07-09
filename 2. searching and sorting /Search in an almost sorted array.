@@ -1,0 +1,31 @@
+#include <stdio.h>
+ 
+int searchElement(int nums[], int n, int target)
+{
+    int low = 0, high = n - 1;
+    
+    while (low <= high){
+        int mid = (low + high) / 2;
+ 
+        if (nums[mid] == target) {
+            return mid;
+        }
+
+        else if (mid - 1 >= low && nums[mid - 1] == target) {
+            return mid - 1;
+        }
+
+        else if (mid + 1 <= high && nums[mid + 1] == target) {
+            return mid + 1;
+        }
+ 
+        else if (target > nums[mid]) {
+            low = mid + 2;
+        }
+ 
+        // if the middle element is greater than the target number,
+        // reduce search space to the right subarray nums[low…mid-2]
+        else {
+            high = mid - 2;
+        }
+    }
