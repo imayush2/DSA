@@ -1,0 +1,40 @@
+class Solution {
+public:
+
+    //find lenght of linnkd list 
+    int length(ListNode* head){
+        int len=0;
+        while(head){
+            head= head->next;
+            len++;
+        }
+        return len;
+    }
+    ListNode* rotateRight(ListNode* head, int k) {
+
+        if(head==NULL) return NULL;
+        int len = length(head);
+        int actualLen = k%len;
+        if(actualLen==0) return head;
+
+        int pos = len-actualLen-1;
+
+        ListNode* newHead = head;
+        ListNode* newLast = head;
+
+        //finding new  last 
+        for(int i=0;i<pos;i++){
+            newLast=newLast->next;
+        }
+        newHead = newLast->next; // new head mil gya 
+        newLast->next = NULL;  
+        
+
+        ListNode* it = newHead;
+        while(it->next != NULL){
+            it=it->next;
+        }
+        it->next=head;
+        return newHead;
+        }
+};
