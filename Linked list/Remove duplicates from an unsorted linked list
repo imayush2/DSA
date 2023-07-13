@@ -1,0 +1,27 @@
+class Solution {
+public:
+    Node* removeDuplicates(Node* head) {
+        if (head == NULL || head->next == NULL) {
+            return head;
+        }
+        unordered_set<int> uniqueValues;
+        Node* curr = head;
+        Node* prev = NULL;
+        
+        while (curr != NULL) {
+            if (uniqueValues.find(curr->data) != uniqueValues.end()) {
+                // Duplicate found, skip the current node
+                prev->next = curr->next;
+                delete curr;
+                curr = prev->next;
+            } else {
+                // Unique value, add it to the set
+                uniqueValues.insert(curr->data);
+                prev = curr;
+                curr = curr->next;
+            }
+        }
+        
+        return head;
+    }
+};
