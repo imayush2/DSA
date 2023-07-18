@@ -1,0 +1,101 @@
+// Brute force 
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        
+        sort(nums.begin(),nums.end());
+        int count = 1;
+
+        for(int i =0;i<nums.size()-1;i++){
+            if(nums[i]==nums[i+1]){
+                count++;
+
+            
+            if(count>nums.size()/2){
+                return nums[i];
+            }
+            }
+            else{
+                count = 1;
+            }
+        }
+        return 1;
+    }
+};
+
+// using Sorting 
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        int n=nums.size();
+        return nums[n/2];
+    }
+};
+//Time complexity : O(nlogn)
+//Space complexity : O(1)
+
+
+// Hashmaps 
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int n = nums.size()-1;
+        unordered_map<int,int>mp;
+        //iterate on array
+        for(int i =0;i<nums.size();i++)
+            mp[nums[i]]++;
+        //iterate on map
+        for(auto it :mp){
+            if(it.second>(nums.size()/2))
+                return it.first;
+        }
+        return -1;  
+    }
+};
+// Time complexity : O(N)
+// Space complexity : O(N)
+
+
+// Moore's Voting Algrithm 
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int count =0;
+        int ele =0;
+
+        for(int i=0;i<nums.size();i++){
+            //for first element when count = 0
+            if(count ==0){
+                count =1;
+                ele = nums[i];
+            }
+            //element find incraase count 
+            else if(ele == nums[i]){
+                count++;
+            }
+            //other ele ment found decrese count
+            else {
+                count--;
+            }
+        }
+        int freq =0;
+        //iterate in kamin array ans find freq of majority 
+        for(int i=0;i<nums.size();i++){
+           if(nums[i]==ele)
+            freq++;
+        }
+         // nums[i] is majority element if its freq > nums.size/2
+        if(freq >(nums.size()/2)){
+            return ele;
+        }
+        return -1;
+    }
+};
+
+// Time complexity : O(n)
+// Space somplexity :O(1)
