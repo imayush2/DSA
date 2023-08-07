@@ -1,0 +1,34 @@
+class Solution{
+public:
+    int minimumDeletions(vector<int> &nums){
+        
+        int n = nums.size();
+        int maxIndex = 0, minIndex = 0;
+        int mini = INT_MAX, maxi = INT_MIN ;
+		
+		//Finding minimum and maximum element
+        for (int i = 0; i < n; i++){
+
+            if(nums[i] < mini){
+                mini = nums[i]; //min element found
+                minIndex = i; //minIndex stored
+            }
+            if(nums[i]>maxi){
+                maxi=nums[i]; //max element found
+                maxIndex=i; //maxIndex stored
+            }
+        }
+     
+		//When removed from front only
+        int front = max(maxIndex, minIndex) + 1;
+		
+		//When removed from back only
+        int back = n - min(minIndex, maxIndex);
+		
+		//When removed from both front and back
+        int frontBack = (min(minIndex, maxIndex) + 1) + (n - max(minIndex, maxIndex));
+		
+       return min(min(front, back), frontBack);
+        
+    }
+};
