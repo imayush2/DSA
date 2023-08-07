@@ -1,0 +1,49 @@
+class Solution {
+public:
+
+    // Brute Force ----> counting the frequency =====> Give TLE
+
+    vector<int> Solution1(vector<int>nums){
+
+        vector<int>ans;
+
+        for(int i  = 0;i<nums.size();i++){
+            int count = 0;
+            for(int j = i+1;j<nums.size();j++){
+                if(nums[i] == nums[j]){
+                    count++;
+                }
+            }
+
+            if(count==1){
+                ans.push_back(nums[i]);
+            }
+        }
+
+        return ans;
+    }
+
+    /*
+        Analysis:
+        Time Complexity : O(n^2)
+        Space Complexity : O(1)
+    */    
+
+
+//sorting 
+
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+      vector<int>ans;
+
+      sort(nums.begin(),nums.end());
+
+      for(int i=1;i<nums.size();i++){
+          if(nums[i-1]==nums[i]){
+              ans.push_back(nums[i]);
+          }
+      }
+      return ans;  
+    }
+};
