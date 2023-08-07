@@ -1,0 +1,46 @@
+//Approach 1
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>>ans;
+    
+        for(int i=0;i < numRows; i++){
+            vector<int>row(i+1,1);
+            
+            for(int j=1;j<i;j++){
+                row[j] = ans[i-1][j] + ans[i-1][j-1];
+                }
+            ans.push_back(row);
+        }
+        return ans;
+    }
+};
+
+
+//Approach 2
+//Approach 2
+class Solution {
+public:
+    //calculate nCr
+    long long int ncr(int n,int r){
+        long long int ans = 1;
+        for(int col = 0;col < r; col++){
+            ans = ans*(n-col);
+            ans = ans/(col+1);
+        }
+         return ans;
+    }
+    //rows generator
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> res;
+        
+        for(int i=0;i<numRows;i++){
+            vector<int> temp;
+            for(int j=0;j<=i;j++){
+                temp.push_back(ncr(i,j));
+            }
+            res.push_back(temp);
+        }
+        return res;
+    }
+};
