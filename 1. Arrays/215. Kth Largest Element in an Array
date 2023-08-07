@@ -1,0 +1,47 @@
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        sort(nums.begin(),nums.end());
+        
+        return nums[nums.size()-k];
+    }
+};
+
+//Min - heap 
+
+class Solution {
+public:
+    int findKthLargest(vector<int>& v, int k) {
+        priority_queue<int,vector<int>,greater<int>> minpq;
+        int n = v.size();
+
+        for(int i = 0;i < n;i++){
+            if(minpq.size() < k) minpq.push(v[i]);
+            else{
+                if(minpq.top() < v[i]){
+                    minpq.pop();
+                    minpq.push(v[i]);
+                }
+            }
+        }
+        return minpq.top();
+    }
+};
+Time Complexity : O(n * logn)
+Space Complexity : O(K)
+
+class Solution {
+public:
+    int findKthLargest(vector<int>& v, int k) {
+        priority_queue<int> pq;
+        int n = v.size();
+
+        for(int i = 0;i < n;i++) pq.push(v[i]);
+        while(--k) pq.pop();
+        
+        return pq.top();
+    }
+};
+
+Time Complexity : O(n * logn)
+Space Complexity : O(1)
